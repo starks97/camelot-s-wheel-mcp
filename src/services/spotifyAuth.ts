@@ -1,3 +1,4 @@
+import "dotenv/config";
 import axios from "axios";
 import { McpError, ErrorCode } from "@modelcontextprotocol/sdk/types.js";
 import type { TokenInfo } from "../types/common.js";

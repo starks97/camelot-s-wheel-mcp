@@ -1,6 +1,6 @@
-import { SpotifyAuth } from "../spotify/spotifyAuth.js";
-import { SpotifyApiService } from "../spotify/spotifyApi.js";
-import { TracksHandler } from "../spotify/handlers/tracks.js";
+import { SpotifyAuth } from "../services/spotifyAuth.js";
+import { SpotifyApiService } from "../services/spotifyApi.js";
+import { TracksHandler } from "../services/handlers/tracks.js";
 import MoodEngine from "../mood/moodEngine.js";
 
 export default class AppState {

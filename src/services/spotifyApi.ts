@@ -1,12 +1,12 @@
 import axios from "axios";
-import { McpError, ErrorCode } from "@modelcontextprotocol/sdk/types.js";
-import { SpotifyErrorResponse } from "../types/common.js";
 import { SpotifyAuth } from "./spotifyAuth.js";
+import ErrorHandler from "../exceptions/errorHandler.js";
 
 const SPOTIFY_API_BASE_URL = "https://api.spotify.com/v1";
 
 export class SpotifyApiService {
   private auth: SpotifyAuth;
+  public static handleError = ErrorHandler.handleGeneralError;
 
   constructor(auth: SpotifyAuth) {
     this.auth = auth;
@@ -30,14 +30,7 @@ export class SpotifyApiService {
       });
       return response.data;
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        const errorResponse = error.response?.data as SpotifyErrorResponse;
-        throw new McpError(
-          ErrorCode.InternalError,
-          `Spotify API error: ${errorResponse.error.message}`,
-        );
-      }
-      throw error;
+      throw SpotifyApiService.handleError(error);
     }
   }
 

@@ -22,7 +22,7 @@ export class TracksHandler {
 
   async getTrackAudioFeatures(args: TrackArgs) {
     const trackId = this.extractTrackId(args.id);
-    const audioFeaturesResult = this.api.request<AudioFeatures>(
+    const audioFeaturesResult = await this.api.request<AudioFeatures>(
       "GET",
       `/audio-features/${trackId}`,
     );
